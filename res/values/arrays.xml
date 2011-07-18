@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="collection_dialog">
-        <item>Command one</item>
-        <item>Command two</item>
-        <item>Command three</item>
-        <item>Command four</item>
+        <item>@string/collection_openCollection</item>
+        <item>@string/collection_editCollection</item>
+        <item>@string/collection_statistics</item>
+        <item>@string/collection_delete</item>
     </string-array>
 </resources>

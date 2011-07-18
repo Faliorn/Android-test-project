@@ -41,24 +41,26 @@ public final class R {
     public static final class string {
         /**  Main activity 
          */
-        public static final int app_name=0x7f050002;
+        public static final int app_name=0x7f050004;
         public static final int cancel=0x7f050001;
-        public static final int category_prompt=0x7f050009;
-        public static final int collection_category=0x7f050007;
-        public static final int collection_delete=0x7f05000d;
-        public static final int collection_editCollection=0x7f05000b;
-        public static final int collection_longdescription=0x7f050008;
-        public static final int collection_openCollection=0x7f05000a;
-        public static final int collection_shortdescription=0x7f050006;
-        public static final int collection_statistics=0x7f05000c;
+        public static final int category_prompt=0x7f05000b;
+        public static final int collection_category=0x7f050009;
+        public static final int collection_delete=0x7f05000f;
+        public static final int collection_editCollection=0x7f05000d;
+        public static final int collection_longdescription=0x7f05000a;
+        public static final int collection_openCollection=0x7f05000c;
+        public static final int collection_shortdescription=0x7f050008;
+        public static final int collection_statistics=0x7f05000e;
         /**  Collection activity 
          */
-        public static final int collection_titleNew=0x7f050005;
-        public static final int menu_newCollection=0x7f050003;
-        public static final int menu_organizeCollections=0x7f050004;
+        public static final int collection_titleNew=0x7f050007;
+        public static final int delete=0x7f050003;
+        public static final int menu_newCollection=0x7f050005;
+        public static final int menu_organizeCollections=0x7f050006;
         /**  General 
          */
         public static final int ok=0x7f050000;
+        public static final int save=0x7f050002;
     }
     public static final class style {
         /**  A theme for a custom dialog appearance.  Here we use an ugly

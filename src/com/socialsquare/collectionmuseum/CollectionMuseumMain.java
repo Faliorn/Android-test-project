@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,12 +22,22 @@ import com.socialsquare.collectionmuseum.adapters.CollectionAdapter;
 import com.socialsquare.collectionmuseum.datamodel.collections.Collection;
 
 public class CollectionMuseumMain extends Activity {
+	/**
+	 * Menus
+	 */
 	private static final int MENU_NEW_COLLECTION = Menu.FIRST;
 	private static final int MENU_ORGANIZE_COLLECTIONS = MENU_NEW_COLLECTION + 1;
 
-	private static final int REQ_CODE_CREATE_COLLECTION = 0;
 	// private static final int REQ_CODE_CHOOSE_ACTION = 1;
 	protected static final int DIALOG_ACTION = 0;
+
+	/**
+	 * Dialog actions
+	 */
+	private static final int ACTION_OPENCOLLECTION = 0;
+	private static final int ACTION_EDITCOLLECTION = 1;
+	private static final int ACTION_STATISTICS = 2;
+	private static final int ACTION_DELETECOLLECTION = 3;
 
 	// Variables
 	ListView mainList;
@@ -50,6 +61,7 @@ public class CollectionMuseumMain extends Activity {
 		mainList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int arg2,
 					long arg3) {
+				// TODO: Cambiar esto para que la coja por ID o algo similar
 				selectedCollection = ((TextView) v
 						.findViewById(R.id.collection_name)).getText()
 						.toString();
@@ -77,7 +89,10 @@ public class CollectionMuseumMain extends Activity {
 		switch (item.getItemId()) {
 		case MENU_NEW_COLLECTION:
 			Intent i = new Intent(this, CollectionActivity.class);
-			startActivityForResult(i, REQ_CODE_CREATE_COLLECTION);
+			i.putExtra("requestCode",
+					CollectionActivity.REQ_CODE_CREATE_COLLECTION);
+			startActivityForResult(i,
+					CollectionActivity.REQ_CODE_CREATE_COLLECTION);
 			break;
 		}
 		return result;
@@ -87,7 +102,7 @@ public class CollectionMuseumMain extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
-		case REQ_CODE_CREATE_COLLECTION:
+		case CollectionActivity.REQ_CODE_CREATE_COLLECTION:
 			if (resultCode == RESULT_OK) {
 				allCollections.add(Collection.create(
 						data.getStringExtra("name"),
@@ -102,30 +117,48 @@ public class CollectionMuseumMain extends Activity {
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
 		case DIALOG_ACTION:
-			return new AlertDialog.Builder(CollectionMuseumMain.this)
-					.setTitle(selectedCollection)
-					.setItems(R.array.collection_dialog,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-
-									/* User clicked so do some stuff */
-									String[] items = getResources()
-											.getStringArray(
-													R.array.collection_dialog);
-									new AlertDialog.Builder(
-											CollectionMuseumMain.this)
-											.setMessage(
-													"You selected: " + which
-															+ " , "
-															+ items[which])
-											.show();
-								}
-							}).create();
+			Builder dialogBuilder = new Builder(CollectionMuseumMain.this);
+			dialogBuilder.setTitle(selectedCollection);
+			dialogBuilder.setItems(R.array.collection_dialog,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							((CollectionMuseumMain) ((AlertDialog) dialog)
+									.getOwnerActivity()).dialogAction(which);
+						}
+					});
+			return dialogBuilder.create();
 		default:
 			return null;
 		}
 
+	}
+
+	protected void dialogAction(int which) {
+		Intent i;
+		switch (which) {
+		case ACTION_OPENCOLLECTION:
+			// i = new Intent(this, CollectionActivity.class);
+			// startActivityForResult(i, REQ_CODE_EDIT_COLLECTION);
+			break;
+		case ACTION_EDITCOLLECTION:
+			i = new Intent(this, CollectionActivity.class);
+			i.putExtra("requestCode",
+					CollectionActivity.REQ_CODE_EDIT_COLLECTION);
+			startActivityForResult(i,
+					CollectionActivity.REQ_CODE_EDIT_COLLECTION);
+			break;
+		case ACTION_STATISTICS:
+			break;
+		case ACTION_DELETECOLLECTION:
+			i = new Intent(this, CollectionActivity.class);
+			i.putExtra("requestCode",
+					CollectionActivity.REQ_CODE_DELETE_COLLECTION);
+			startActivityForResult(i,
+					CollectionActivity.REQ_CODE_DELETE_COLLECTION);
+			break;
+		default:
+			break;
+		}
 	}
 
 	@Override

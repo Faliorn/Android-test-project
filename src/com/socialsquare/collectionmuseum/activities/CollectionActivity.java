@@ -17,7 +17,15 @@ import com.socialsquare.collectionmuseum.datamodel.collections.CollectionCategor
 
 public class CollectionActivity extends Activity {
 
+	/**
+	 * Request codes for this activity
+	 */
+	public static final int REQ_CODE_CREATE_COLLECTION = 0;
+	public static final int REQ_CODE_EDIT_COLLECTION = 1;
+	public static final int REQ_CODE_DELETE_COLLECTION = 2;
+
 	Button ok;
+	Button cancel;
 	EditText name;
 	EditText longDescription;
 	Spinner categories;
@@ -27,8 +35,24 @@ public class CollectionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.collection_activity);
 		ok = (Button) findViewById(R.id.ok);
+		cancel = (Button) findViewById(R.id.cancel);
 		name = (EditText) findViewById(R.id.collection_name);
 		longDescription = (EditText) findViewById(R.id.collection_longDescription);
+		loadCategories();
+		configureLayout();
+	}
+
+	protected void configureLayout() {
+		int requestCode = getIntent().getIntExtra("requestCode",
+				REQ_CODE_CREATE_COLLECTION);
+		switch (requestCode) {
+		case REQ_CODE_EDIT_COLLECTION:
+			ok.setText(R.string.save);
+			break;
+		case REQ_CODE_DELETE_COLLECTION:
+			ok.setText(R.string.delete);
+			break;
+		}
 		ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// Collection c = new Collection();
@@ -40,7 +64,11 @@ public class CollectionActivity extends Activity {
 				finish();
 			}
 		});
-		loadCategories();
+		cancel.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				finish();
+			}
+		});
 	}
 
 	private void loadCategories() {
