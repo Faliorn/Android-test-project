@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<!-- General -->
+	<string name="ok">Aceptar</string>
+	<string name="cancel">Cancelar</string>
+	<!-- Main activity -->
+	<string name="app_name">Collector Museum</string>
+	<string name="menu_newCollection">Nueva colección</string>
+	<string name="menu_organizeCollections">Organizar colecciones</string>
+	<!-- Collection activity -->
+	<string name="collection_titleNew">Crear nueva colección</string>
+	<string name="collection_shortdescription">Descripción corta:</string>
+	<string name="collection_category">Categoría:</string>
+	<string name="collection_longdescription">Descripción larga:</string>
+	<string name="category_prompt">Seleccione una categoría</string>
+	<string name="collection_openCollection">Abrir colección</string>
+	<string name="collection_editCollection">Editar colección</string>
+	<string name="collection_statistics">Estadísticas</string>
+	<string name="collection_delete">Eliminar colección</string>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="wrap_content"
+	android:layout_height="wrap_content" android:theme="@android:style/Theme.Dialog">
+	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_height="wrap_content" android:id="@+id/collection_openCollection"
+		android:layout_width="wrap_content" android:text="@string/collection_openCollection" />
+	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_height="wrap_content" android:id="@+id/collection_editCollection"
+		android:layout_width="wrap_content" android:text="@string/collection_editCollection" />
+	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_height="wrap_content" android:id="@+id/collection_statistics"
+		android:layout_width="wrap_content" android:text="@string/collection_statistics" />
+	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_height="wrap_content" android:id="@+id/collection_delete"
+		android:layout_width="wrap_content" android:text="@string/collection_delete" />
+</LinearLayout>
